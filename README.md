@@ -11,6 +11,24 @@ Blog pessoal desenvolvido com **Django**, com cadastro de usuários e publicaç�
 - Painel administrativo do Django (`/admin/`)
 - Testes automatizados (`python manage.py test`)
 
+## Capturas de tela
+
+**Lista de publicações**
+
+![Lista de publicações](docs/lista.png)
+
+**Publicação com ações de editar e excluir (visíveis só para o autor)**
+
+![Detalhe da publicação](docs/detalhe.png)
+
+**Nova publicação**
+
+![Formulário de nova publicação](docs/formulario.png)
+
+**Login**
+
+![Tela de login](docs/login.png)
+
 ## Tecnologias
 
 Python · Django · HTML/CSS · SQLite (desenvolvimento) · PostgreSQL (Docker) · Docker / Docker Compose · Gunicorn · Git/GitHub
