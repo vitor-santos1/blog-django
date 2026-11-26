@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Blog{% endblock %} · Blog Django</title>
+  <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{% url 'post_list' %}">Blog Django</a>
+    <nav>
+      {% if user.is_authenticated %}
+        <span class="muted">Olá, {{ user.username }}</span>
+        <a href="{% url 'post_create' %}">Nova publicação</a>
+        <form method="post" action="{% url 'logout' %}" class="inline">
+          {% csrf_token %}<button type="submit" class="link">Sair</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}">Entrar</a>
+        <a href="{% url 'signup' %}">Cadastrar</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main class="container">
+    {% for message in messages %}<p class="flash">{{ message }}</p>{% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

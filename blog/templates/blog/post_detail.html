@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+  <article class="card">
+    <h1>{{ post.title }}</h1>
+    <p class="muted">por {{ post.author.username }} em {{ post.created_at|date:"d/m/Y H:i" }}
+      {% if post.updated_at|date:"U" != post.created_at|date:"U" %}· editado em {{ post.updated_at|date:"d/m/Y H:i" }}{% endif %}</p>
+    <div>{{ post.content|linebreaks }}</div>
+    {% if user == post.author %}
+      <p class="actions">
+        <a class="btn" href="{% url 'post_update' post.pk %}">Editar</a>
+        <a class="btn danger" href="{% url 'post_delete' post.pk %}">Excluir</a>
+      </p>
+    {% endif %}
+  </article>
+  <p><a href="{% url 'post_list' %}">&larr; Voltar</a></p>
+{% endblock %}

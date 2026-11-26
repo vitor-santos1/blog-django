@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% block title %}Publicações{% endblock %}
+{% block content %}
+  <h1>Publicações</h1>
+  {% for post in object_list %}
+    <article class="card">
+      <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+      <p class="muted">por {{ post.author.username }} em {{ post.created_at|date:"d/m/Y H:i" }}</p>
+      <p>{{ post.content|truncatewords:40|linebreaksbr }}</p>
+    </article>
+  {% empty %}
+    <p>Nenhuma publicação ainda.</p>
+  {% endfor %}
+  {% if is_paginated %}
+    <nav class="pager">
+      {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">&larr; Anterior</a>{% endif %}
+      <span class="muted">Página {{ page_obj.number }} de {{ paginator.num_pages }}</span>
+      {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Próxima &rarr;</a>{% endif %}
+    </nav>
+  {% endif %}
+{% endblock %}
